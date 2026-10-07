@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRAFT // CINEMA — The Ordered Filmmaker Operating System & Master Codex</title>
+  <meta name="description" content="A comprehensive, chronologically ordered filmmaker guide and production toolkit. Master every sector: Development, Pre-Production, Shooting, Post, and Distribution with live simulators, video showcases, and interactive tools.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="film-grain">
+  
+  <!-- Viewfinder Frame Markers Overlay -->
+  <div class="viewfinder-overlay" aria-hidden="true">
+    <div class="vf-corner top-left"></div>
+    <div class="vf-corner top-right"></div>
+    <div class="vf-corner bottom-left"></div>
+    <div class="vf-corner bottom-right"></div>
+    <div class="vf-crosshair"></div>
+    <div class="vf-aspect-guide">2.39 : 1 SCOPE // DCI-4K // 24.00 FPS</div>
+  </div>
+
+  <!-- Top Cinematic Navigation & Telemetry HUD -->
+  <header class="cinematic-nav">
+    <div class="nav-container">
+      <div class="brand" id="brand-logo-btn" title="Back to top">
+        <div class="rec-dot-pulse"></div>
+        <div class="brand-text">
+          <span class="brand-title">CRAFT<span class="gold-accent">//</span>CINEMA</span>
+          <span class="brand-subtitle">THE COMPLETE FILMMAKING LIFECYCLE</span>
+        </div>
+      </div>
+
+      <!-- Chronologically Ordered Navigation -->
+      <nav class="nav-links">
+        <button class="nav-link active" data-scroll-to="pipeline"><span class="nav-step">01</span><span>5 Phases</span></button>
+        <button class="nav-link" data-scroll-to="cinelab"><span class="nav-step">02</span><span>CineLab Studio</span></button>
+        <button class="nav-link" data-scroll-to="theater"><span class="nav-step">03</span><span>Video & Reels</span></button>
+        <button class="nav-link" data-scroll-to="grade-slider"><span class="nav-step">04</span><span>Color Grade Lab</span></button>
+        <button class="nav-link" data-scroll-to="departments"><span class="nav-step">05</span><span>Departments</span></button>
+        <button class="nav-link" data-scroll-to="tools"><span class="nav-step">06</span><span>Interactive Tools</span></button>
+        <button class="nav-link" data-scroll-to="soundboard"><span class="nav-step">07</span><span>Foley Soundboard</span></button>
+        <button class="nav-link" data-scroll-to="glossary"><span class="nav-step">08</span><span>Jargon Decoder</span></button>
+        <button class="nav-link" data-scroll-to="checklist"><span class="nav-step">09</span><span>Pre-Flight Audit</span></button>
+      </nav>
+
+      <div class="nav-telemetry">
+        <!-- Cinematic Soundtrack HUD Player -->
+        <div class="soundtrack-hud" id="soundtrack-hud">
+          <div class="soundtrack-pill" id="soundtrack-pill" title="Click to play / pause score or choose movie theme">
+            <div class="soundtrack-eq" id="soundtrack-eq">
+              <span class="eq-bar b1"></span>
+              <span class="eq-bar b2"></span>
+              <span class="eq-bar b3"></span>
+              <span class="eq-bar b4"></span>
+            </div>
+            <div class="soundtrack-meta">
+              <span class="score-badge"><i class="fa-solid fa-compact-disc" id="score-disc-icon"></i> CINEMA SCORE</span>
+              <span class="score-title" id="score-active-title">SALAAR: Khansaar Suite</span>
+            </div>
+            <button class="score-play-btn" id="score-play-btn" aria-label="Toggle Soundtrack">
+              <i class="fa-solid fa-play" id="score-play-icon"></i>
+            </button>
+          </div>
+
+          <!-- Quick Dropdown for Score Selection -->
+          <div class="soundtrack-dropdown" id="soundtrack-dropdown">
+            <div class="soundtrack-dropdown-header">
+              <span><i class="fa-solid fa-music gold"></i> MOVIE SOUNDTRACK SCORE</span>
+              <div class="soundtrack-vol-slider-wrap">
+                <i class="fa-solid fa-volume-low"></i>
+                <input type="range" id="soundtrack-vol-slider" min="0" max="100" value="65" aria-label="Score volume">
+              </div>
+            </div>
+            <div class="soundtrack-theme-list">
+              <button class="score-track-opt active" data-score="salaar">
+                <i class="fa-solid fa-fire gold"></i>
+                <div>
+                  <strong>1. Salaar: Khansaar War Suite (Prabhas & Neel)</strong>
+                  <small>Ravi Basrur Style • Sub-bass Drone, War Drums & Dark Braaams</small>
+                </div>
+              </button>
+              <button class="score-track-opt" data-score="interstellar">
+                <i class="fa-solid fa-atom gold"></i>
+                <div>
+                  <strong>2. Interstellar: Time & Cosmos (Zimmer)</strong>
+                  <small>Hans Zimmer Style • 24 BPM Ticking Clock & Cathedral Arpeggio</small>
+                </div>
+              </button>
+              <button class="score-track-opt" data-score="oppenheimer">
+                <i class="fa-solid fa-bolt sienna"></i>
+                <div>
+                  <strong>3. Oppenheimer: Chain Reaction (Göransson)</strong>
+                  <small>Ludwig Göransson Style • Rapid Staccato Tension & Crescendo</small>
+                </div>
+              </button>
+              <button class="score-track-opt" data-score="bladerunner">
+                <i class="fa-solid fa-city gold"></i>
+                <div>
+                  <strong>4. Blade Runner 2049: Neon Tears (Vangelis)</strong>
+                  <small>Vangelis CS-80 Brass Swells & Atmospheric Reverb</small>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="telemetry-item">
+          <span class="telem-label">TIMECODE</span>
+          <span class="telem-val" id="hud-timecode">01:24:18:04</span>
+        </div>
+        <div class="telemetry-item">
+          <span class="telem-label">ISO / SHUTTER</span>
+          <span class="telem-val gold">800 // 180°</span>
+        </div>
+        <!-- Light / Dark Theme Toggle Pill -->
+        <button id="theme-toggle-btn" class="theme-toggle-pill" title="Toggle Light / Dark Mode" aria-label="Toggle theme">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+          <span id="theme-label-text">DARKROOM</span>
+        </button>
+        <button id="ui-sound-toggle" class="audio-btn" title="Toggle Cinematic Sound Effects">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Animated Film Strip Ticker -->
+  <div class="film-ticker-bar" aria-hidden="true">
+    <div class="ticker-track">
+      <span>DEVELOPMENT</span> • <span>SCREENWRITING</span> • <span>PRE-PRODUCTION</span> • <span>STORYBOARDING</span> • <span>TECH SCOUT</span> • <span>CASTING</span> • <span>PRINCIPAL PHOTOGRAPHY</span> • <span>3-POINT LIGHTING</span> • <span>BOOM CAPTURE</span> • <span>POST-PRODUCTION</span> • <span>PICTURE LOCK</span> • <span>COLOR CONFORM</span> • <span>DOLBY ATMOS</span> • <span>DCP MASTERING</span> • <span>DISTRIBUTION</span> •
+      <span>DEVELOPMENT</span> • <span>SCREENWRITING</span> • <span>PRE-PRODUCTION</span> • <span>STORYBOARDING</span> • <span>TECH SCOUT</span> • <span>CASTING</span> • <span>PRINCIPAL PHOTOGRAPHY</span> • <span>3-POINT LIGHTING</span> • <span>BOOM CAPTURE</span> • <span>POST-PRODUCTION</span> • <span>PICTURE LOCK</span> • <span>COLOR CONFORM</span> • <span>DOLBY ATMOS</span> • <span>DCP MASTERING</span> • <span>DISTRIBUTION</span> •
+    </div>
+  </div>
+
+  <!-- Main Ordered Content Container -->
+  <main class="main-wrapper">
+    
+    <!-- HERO SECTION WITH INTERACTIVE CLAPPERBOARD & VIDEO AMBIENCE -->
+    <section class="hero-section reveal-on-scroll">
+      <div class="hero-bg-media">
+        <img src="assets/images/hero_camera.jpg" alt="Cinematography Camera on Set" class="hero-ambient-img">
+        <div class="hero-gradient-overlay"></div>
+      </div>
+
+      <div class="hero-content">
+        <div class="hero-badge animate-pulse">
+          <i class="fa-solid fa-film"></i> CHRONOLOGICAL MASTER DIRECTORY & TOOLKIT
+        </div>
+        <h1 class="hero-heading">
+          THE COMPLETE ANATOMY OF <br><span class="gradient-text">MAKING A MOTION PICTURE</span>
+        </h1>
+        <p class="hero-lead">
+          Every phase, sector, technical department, and physical tool laid out in strict chronological order. 
+          Follow the exact path from raw concept and screenplay breakdown to camera blocking, audio mixing, color grading, and world premiere distribution.
+        </p>
+
+        <!-- Interactive Clapperboard & Camera HUD Widget -->
+        <div class="hero-clapper-wrapper">
+          <div class="clapperboard-box" id="interactive-clapper" title="Click to clap the slate!">
+            <div class="clapper-stick" id="clapper-arm">
+              <div class="clapper-stripes"></div>
+            </div>
+            <div class="clapper-body">
+              <div class="clapper-meta-row">
+                <div class="clapper-meta-col">
+                  <span>PRODUCTION</span>
+                  <strong>CRAFT // CINEMA</strong>
+                </div>
+                <div class="clapper-meta-col">
+                  <span>DIRECTOR</span>
+                  <strong>YOU (FIRST-TIME DIR)</strong>
+                </div>
+                <div class="clapper-meta-col">
+                  <span>CAMERA</span>
+                  <strong>A-CAM (35mm)</strong>
+                </div>
+              </div>
+              <div class="clapper-numbers-row">
+                <div class="clap-num-box">
+                  <span>SCENE</span>
+                  <strong>01</strong>
+                </div>
+                <div class="clap-num-box">
+                  <span>TAKE</span>
+                  <strong id="slate-take-count">1</strong>
+                </div>
+                <div class="clap-num-box">
+                  <span>FPS</span>
+                  <strong id="hud-fps-val">24.00</strong>
+                </div>
+              </div>
+              <div class="clapper-action-call">
+                <i class="fa-solid fa-hand-pointer"></i> <span>CLICK SLATE TO CLAP & RECORD TAKE</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Director's Viewfinder HUD Controls -->
+          <div class="hero-camera-hud glass-panel">
+            <div class="hud-top-bar">
+              <div class="hud-status-chip" id="rec-tally-btn" title="Toggle Recording Tally">
+                <span class="rec-dot-live" id="rec-dot-indicator"></span>
+                <strong id="rec-status-text">STBY // A-CAM</strong>
+              </div>
+              <div class="hud-center-lens">
+                <span class="hud-spec-chip">SENSOR: FULL FRAME 3:2</span>
+                <span class="hud-spec-chip" id="hud-active-aspect">SCOPE 2.39 : 1</span>
+              </div>
+              <div class="hud-audio-bars">
+                <div class="audio-channel">
+                  <span>L</span>
+                  <div class="meter-track"><div class="meter-level" id="audio-meter-l"></div></div>
+                </div>
+                <div class="audio-channel">
+                  <span>R</span>
+                  <div class="meter-track"><div class="meter-level" id="audio-meter-r"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Quick HUD Buttons -->
+            <div class="hud-controls-row">
+              <div class="hud-control-group">
+                <label>Aspect Ratio Frame:</label>
+                <div class="mini-btn-group" id="aspect-ratio-selector">
+                  <button class="aspect-chip active" data-aspect="2.39:1">2.39:1 Scope</button>
+                  <button class="aspect-chip" data-aspect="1.85:1">1.85:1 Flat</button>
+                  <button class="aspect-chip" data-aspect="1.43:1">1.43:1 IMAX</button>
+                  <button class="aspect-chip" data-aspect="4:3">4:3 Vintage</button>
+                </div>
+              </div>
+              <div class="hud-control-group">
+                <label>Shutter & FPS:</label>
+                <div class="mini-btn-group" id="fps-selector">
+                  <button class="fps-chip active" data-fps="24.00">24 fps (180°)</button>
+                  <button class="fps-chip" data-fps="48.00">48 fps</button>
+                  <button class="fps-chip" data-fps="60.00">60 fps Slo-Mo</button>
+                  <button class="fps-chip" data-fps="120.00">120 fps Speed</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Studio Role Launchpad -->
+        <div class="studio-launchpad-section">
+          <div class="launchpad-header">
+            <span class="launchpad-tag"><i class="fa-solid fa-bolt gold"></i> INSTANT STUDIO WORKSPACES</span>
+            <h3>Choose Your Department Workstation</h3>
+            <p>Jump directly into specialized, live interactive tools tailored for your on-set or post-production role:</p>
+          </div>
+
+          <div class="launchpad-grid">
+            <div class="launch-card" data-jump-to="tools" data-subtool-target="shotlister">
+              <div class="launch-card-icon"><i class="fa-solid fa-clapperboard gold"></i></div>
+              <div class="launch-card-body">
+                <span class="launch-role">DIRECTING</span>
+                <h4>Director's Suite</h4>
+                <p>Screenplay beat calculator, camera shot list builder & scene coverage matrix.</p>
+              </div>
+              <div class="launch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+
+            <div class="launch-card" data-jump-to="cinelab">
+              <div class="launch-card-icon"><i class="fa-solid fa-camera sienna"></i></div>
+              <div class="launch-card-body">
+                <span class="launch-role">CINEMATOGRAPHY</span>
+                <h4>CineLab Optics & Lights</h4>
+                <p>Interactive 3-point lighting stage, depth of field simulator & live contrast ratio.</p>
+              </div>
+              <div class="launch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+
+            <div class="launch-card" data-jump-to="pipeline" data-phase-target="2">
+              <div class="launch-card-icon"><i class="fa-solid fa-clipboard-list gold"></i></div>
+              <div class="launch-card-body">
+                <span class="launch-role">PRODUCTION & 1ST AD</span>
+                <h4>Live Call Sheet Studio</h4>
+                <p>Hollywood call sheet creator, script 8ths estimator, budget allocator & DOOD.</p>
+              </div>
+              <div class="launch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+
+            <div class="launch-card" data-jump-to="soundboard">
+              <div class="launch-card-icon"><i class="fa-solid fa-headphones sienna"></i></div>
+              <div class="launch-card-body">
+                <span class="launch-role">POST & SOUND</span>
+                <h4>Color & Foley Soundboard</h4>
+                <p>Split-screen LUT laboratory, interactive foley board with 8 sound triggers & live waveform.</p>
+              </div>
+              <div class="launch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6-Stage Master Journey Tracker (Chronological Roadmap) -->
+        <div class="roadmap-stepper-strip">
+          <div class="roadmap-step" data-scroll-to="phase-1">
+            <div class="step-circle">1</div>
+            <div class="step-text">
+              <strong>Development</strong>
+              <small>Idea & Script</small>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+
+          <div class="roadmap-step" data-scroll-to="phase-2">
+            <div class="step-circle">2</div>
+            <div class="step-text">
+              <strong>Pre-Production</strong>
+              <small>Logistics & Cast</small>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+
+          <div class="roadmap-step" data-scroll-to="phase-3">
+            <div class="step-circle">3</div>
+            <div class="step-text">
+              <strong>Production</strong>
+              <small>Shoot & Sound</small>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+
+          <div class="roadmap-step" data-scroll-to="phase-4">
+            <div class="step-circle">4</div>
+            <div class="step-text">
+              <strong>Post-Production</strong>
+              <small>Cut & Color</small>
+            </div>
+          </div>
+          <div class="step-connector"></div>
+
+          <div class="roadmap-step" data-scroll-to="phase-5">
+            <div class="step-circle">5</div>
+            <div class="step-text">
+              <strong>Distribution</strong>
+              <small>Festivals & DCP</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 1: THE 5 CHRONOLOGICAL PRODUCTION PHASES
+         =================================================================== -->
+    <section id="pipeline" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-atom gold"></i> STEP 01: REAL-WORLD PRODUCTION WORKBENCH</div>
+        <h2 class="section-title">Blockbuster Scene Lab & The 5 Pillars</h2>
+        <p class="section-desc">
+          Instead of reading dry theory, explore how a Hollywood production actually conceives, rigs, shoots, and finishes an epic sequence: 
+          <strong>"THE ZERO-GRAVITY METROPOLITAN COLLAPSE"</strong>. Interact with the live physics generator below, then examine each production phase.
+        </p>
+      </div>
+
+      <!-- ===================================================================
+           INTERACTIVE ANTI-GRAVITY CITY STREET SIMULATOR & SCENE GENERATOR
+           =================================================================== -->
+      <div class="gravity-studio-wrapper glass-panel">
+        <div class="gravity-studio-header">
+          <div class="studio-title-badge">
+            <span class="rec-dot-live"></span>
+            <strong>SCENE 04 // EXT. 5th AVE & BROADWAY — THE GRAVITY COLLAPSE</strong>
+          </div>
+          <div class="studio-hud-telemetry">
+            <div class="hud-item">
+              <span class="hud-label">GRAVITY FIELD:</span>
+              <span id="hud-gravity-val" class="telem-val gold">+1.00G (EARTH)</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">FPS MODE:</span>
+              <span id="hud-fps-indicator" class="telem-val gold">24.00 FPS [REALTIME]</span>
+            </div>
+            <div class="hud-item">
+              <span class="hud-label">ASPECT:</span>
+              <span class="telem-val sienna">SCOPE 2.39 : 1</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div class="gravity-canvas-container" id="gravity-viewport-frame">
+          <canvas id="gravity-city-canvas"></canvas>
+          <div class="canvas-interactive-hint">
+            <i class="fa-solid fa-hand-pointer gold"></i> 
+            <span>Click &amp; drag any floating taxi, bike, or street sign to fling it across the sky in zero-g</span>
+          </div>
+        </div>
+
+        <!-- Primary Control Console -->
+        <div class="gravity-console-bar">
+          <div class="console-left-actions">
+            <button id="gravity-collapse-btn" class="action-btn-primary glow-gold" title="Invert gravity and lift vehicles into the sky">
+              <i class="fa-solid fa-atom fa-spin"></i> TRIGGER GRAVITY COLLAPSE
+            </button>
+            <button id="spawn-chaos-btn" class="mini-btn" title="Add extra taxis, bicycles, and street signs">
+              <i class="fa-solid fa-car-burst"></i> + SPAWN MORE CHAOS
+            </button>
+          </div>
+
+          <div class="console-sliders">
+            <div class="slider-control-group">
+              <label for="gravity-force-slider">GRAVITY FIELD <span id="grav-slider-label">(+1.0G)</span></label>
+              <input type="range" id="gravity-force-slider" min="-1.5" max="1.0" step="0.05" value="1.0">
+            </div>
+          </div>
+
+          <div class="console-camera-toggles">
+            <span class="console-sublabel">CAMERA:</span>
+            <div class="button-pill-group">
+              <button class="cam-angle-btn active" data-angle="street" title="35mm Anamorphic Street Level">Street Eye</button>
+              <button class="cam-angle-btn" data-angle="crane" title="50ft Technocrane High Angle">Crane Cam</button>
+              <button class="cam-angle-btn" data-angle="tracking" title="Tracking Lead Taxi POV">Tracking Dolly</button>
+              <button class="cam-angle-btn" data-angle="pov" title="Scrambling Pedestrian POV">Pedestrian POV</button>
+            </div>
+          </div>
+
+          <div class="console-vfx-toggles">
+            <span class="console-sublabel">VFX PASS:</span>
+            <div class="button-pill-group">
+              <button class="vfx-pass-btn active" data-pass="graded" title="Final 35mm Hollywood Master Grade">Final Master</button>
+              <button class="vfx-pass-btn" data-pass="wireframe" title="Previs 3D Mesh Wireframe">3D Previs</button>
+              <button class="vfx-pass-btn" data-pass="rigging" title="Stunt Crane Harness Rigging Lines">Stunt Rigging</button>
+            </div>
+          </div>
+
+          <div class="console-time-toggles">
+            <span class="console-sublabel">SPEED:</span>
+            <div class="button-pill-group">
+              <button class="time-scale-btn active" data-scale="1.0">24 FPS</button>
+              <button class="time-scale-btn" data-scale="0.25">120 FPS</button>
+              <button class="time-scale-btn" data-scale="0.0">Freeze</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Phase Selector Tabs with Visual Progress Indicator -->
+      <div class="timeline-stepper">
+        <button class="step-btn active" data-phase="1">
+          <span class="step-num">PHASE 01</span>
+          <span class="step-title">Development</span>
+          <span class="step-meta">Idea, Script & Rights</span>
+        </button>
+        <button class="step-btn" data-phase="2">
+          <span class="step-num">PHASE 02</span>
+          <span class="step-title">Pre-Production</span>
+          <span class="step-meta">Scout, Cast & Budget</span>
+        </button>
+        <button class="step-btn" data-phase="3">
+          <span class="step-num">PHASE 03</span>
+          <span class="step-title">Principal Photography</span>
+          <span class="step-meta">Shooting & Sound</span>
+        </button>
+        <button class="step-btn" data-phase="4">
+          <span class="step-num">PHASE 04</span>
+          <span class="step-title">Post-Production</span>
+          <span class="step-meta">Edit, Color & Mix</span>
+        </button>
+        <button class="step-btn" data-phase="5">
+          <span class="step-num">PHASE 05</span>
+          <span class="step-title">Distribution</span>
+          <span class="step-meta">Festivals & Release</span>
+        </button>
+      </div>
+
+      <!-- Dynamic Phase Display Card with Featured Visual Banner -->
+      <div id="phase-content-host" class="phase-display-card">
+        <!-- Injected via JavaScript with dynamic high-res photos and detailed cards -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 2: CINELAB - LIGHTING & OPTICS STUDIO
+         =================================================================== -->
+    <section id="cinelab" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-camera gold"></i> STEP 02 IN THE PROCESS</div>
+        <h2 class="section-title">CineLab: Interactive Lighting & Framing Studio</h2>
+        <p class="section-desc">
+          Experience optical physics and lighting ratios in real time. Manipulate the 3-point lighting stage to observe live shadow projection and simulate depth of field on various focal lengths.
+        </p>
+      </div>
+
+      <div class="cinelab-split">
+        <!-- Visualizer 1: 3-Point Lighting Simulator -->
+        <div class="studio-card glass-panel">
+          <div class="studio-card-header">
+            <div>
+              <h3 class="panel-title"><i class="fa-solid fa-lightbulb gold"></i> 3-Point Lighting & Contrast Studio</h3>
+              <p class="panel-subtitle">Visualize how Key, Fill, and Rim lights mold a subject's face.</p>
+            </div>
+            <span class="ratio-badge" id="contrast-ratio-badge">Contrast Ratio: 4 : 1</span>
+          </div>
+
+          <!-- Interactive Canvas / SVG Simulator for Lighting -->
+          <div class="lighting-stage-container">
+            <div class="lighting-stage" id="lighting-stage">
+              <div class="stage-subject" id="stage-actor">
+                <i class="fa-solid fa-user actor-icon"></i>
+                <span class="actor-label">ACTOR</span>
+              </div>
+              <div class="stage-camera">
+                <i class="fa-solid fa-video camera-icon"></i>
+                <span class="camera-label">A-CAM</span>
+              </div>
+
+              <!-- Interactive Lights -->
+              <div class="light-fixture key-fixture" id="key-fixture">
+                <i class="fa-regular fa-sun light-icon"></i>
+                <span>KEY (45°)</span>
+              </div>
+              <div class="light-fixture fill-fixture" id="fill-fixture">
+                <i class="fa-solid fa-circle-half-stroke light-icon"></i>
+                <span>FILL (-45°)</span>
+              </div>
+              <div class="light-fixture rim-fixture" id="rim-fixture">
+                <i class="fa-solid fa-certificate light-icon"></i>
+                <span>RIM / HAIR (135°)</span>
+              </div>
+            </div>
+
+            <!-- Subject Face Preview Simulation -->
+            <div class="face-preview-box">
+              <div class="face-canvas-wrapper">
+                <canvas id="face-render-canvas" width="220" height="260"></canvas>
+                <div class="face-overlay-label">LIVE SHADOW FALLOFF</div>
+              </div>
+              <div class="lighting-stats-box">
+                <div class="stat-row">
+                  <span>Key Intensity:</span>
+                  <strong id="key-val-display">100%</strong>
+                </div>
+                <div class="stat-row">
+                  <span>Fill Intensity:</span>
+                  <strong id="fill-val-display">25% (Dramatic)</strong>
+                </div>
+                <div class="stat-row">
+                  <span>Rim Intensity:</span>
+                  <strong id="rim-val-display">70%</strong>
+                </div>
+                <div class="stat-row">
+                  <span>Mood Style:</span>
+                  <strong class="gold" id="mood-style-display">Film Noir / Drama</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls for Lighting -->
+          <div class="lighting-controls">
+            <div class="control-slider-group">
+              <label for="key-intensity">Key Light Intensity</label>
+              <input type="range" id="key-intensity" min="0" max="100" value="100">
+            </div>
+            <div class="control-slider-group">
+              <label for="fill-intensity">Fill Light (Shadow Softener)</label>
+              <input type="range" id="fill-intensity" min="0" max="100" value="25">
+            </div>
+            <div class="control-slider-group">
+              <label for="rim-intensity">Rim / Backlight (Subject Separation)</label>
+              <input type="range" id="rim-intensity" min="0" max="100" value="70">
+            </div>
+            <div class="preset-buttons-row">
+              <button class="preset-btn" data-preset="noir">Film Noir (High Contrast)</button>
+              <button class="preset-btn" data-preset="commercial">Commercial / Comedy (Flat High Key)</button>
+              <button class="preset-btn" data-preset="moody">Moody Indie Drama (Low Key)</button>
+              <button class="preset-btn" data-preset="silhouette">Silhouette</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visualizer 2: Depth of Field & Optics Lab -->
+        <div class="studio-card glass-panel">
+          <div class="studio-card-header">
+            <div>
+              <h3 class="panel-title"><i class="fa-solid fa-circle-dot gold"></i> Optics, Aperture & Depth of Field</h3>
+              <p class="panel-subtitle">Understand f-stops, lens compression, and cinematic bokeh.</p>
+            </div>
+            <span class="ratio-badge" id="dof-badge">Shallow DoF (f/1.4)</span>
+          </div>
+
+          <div class="dof-visualizer-preview">
+            <div class="dof-scene" id="dof-scene-viewport">
+              <div class="dof-layer background-layer" id="dof-bg">
+                <div class="bokeh-orb o1"></div>
+                <div class="bokeh-orb o2"></div>
+                <div class="bokeh-orb o3"></div>
+                <span>BACKGROUND (DISTANT CITY)</span>
+              </div>
+              <div class="dof-layer subject-layer" id="dof-subject">
+                <i class="fa-solid fa-person-rays main-actor"></i>
+                <div class="focus-plane-indicator" id="focus-plane-indicator">FOCUS PLANE</div>
+              </div>
+              <div class="dof-layer foreground-layer" id="dof-fg">
+                <i class="fa-solid fa-tree fg-element"></i>
+                <span>FOREGROUND OBJECT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controls for Optics -->
+          <div class="optics-controls">
+            <div class="form-row">
+              <div class="form-group col-4">
+                <label for="aperture-select">Aperture (f-stop)</label>
+                <select id="aperture-select">
+                  <option value="1.4" selected>f / 1.4 (Razor Thin Bokeh)</option>
+                  <option value="2.8">f / 2.8 (Cinematic Standard)</option>
+                  <option value="5.6">f / 5.6 (Moderate Depth)</option>
+                  <option value="11">f / 11 (Deep Focus / Landscapes)</option>
+                  <option value="22">f / 22 (Infinite Focus)</option>
+                </select>
+              </div>
+              <div class="form-group col-4">
+                <label for="focal-length-select">Focal Length</label>
+                <select id="focal-length-select">
+                  <option value="24">24mm (Wide / Expansive)</option>
+                  <option value="50" selected>50mm (Natural Eye)</option>
+                  <option value="85">85mm (Compressed / Flattering)</option>
+                  <option value="135">135mm (Heavy Background Compression)</option>
+                </select>
+              </div>
+              <div class="form-group col-4">
+                <label for="focus-target-select">Focus Target</label>
+                <select id="focus-target-select">
+                  <option value="subject" selected>Main Subject (Middle)</option>
+                  <option value="fg">Foreground (Rack Focus Front)</option>
+                  <option value="bg">Background (Rack Focus Back)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="optics-explanation-box" id="optics-info-box">
+              <!-- Populated via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 3: CINEMATIC VIDEO THEATER & MASTERCLASSES
+         =================================================================== -->
+    <section id="theater" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-play gold"></i> STEP 03 IN THE PROCESS</div>
+        <h2 class="section-title">The Cinema Theater & Video Masterclasses</h2>
+        <p class="section-desc">
+          Watch actual film set operations and visual breakdowns. Experience how professional directors frame movement, stage actors, and evaluate takes through director monitors.
+        </p>
+      </div>
+
+      <div class="cinema-theater-container glass-panel">
+        <div class="theater-split">
+          <!-- Monitor Frame with Active Video Player -->
+          <div class="cinema-monitor-frame">
+            <div class="monitor-top-bezel">
+              <span class="bezel-brand">ARRI ULTRA HD DIRECTOR MONITOR</span>
+              <span class="bezel-rec"><span class="rec-dot"></span> REC [24.00 FPS]</span>
+            </div>
+
+            <div class="monitor-screen-wrapper">
+              <video id="cinema-video-player" class="active-video-element" controls poster="assets/images/hero_camera.jpg" preload="metadata">
+                <source src="assets/videos/cinematic_sample.webm" type="video/webm">
+                Your browser does not support the video tag.
+              </video>
+              <div class="video-overlay-hud">
+                <span class="hud-lut-badge">LUT: KODAK 2383 PRINT EMULATION</span>
+                <span class="hud-lens-badge">LENS: 50mm T1.5 ANAMORPHIC</span>
+              </div>
+            </div>
+
+            <div class="monitor-bottom-controls">
+              <div class="monitor-meta">
+                <span id="active-video-title">CINEMATIC DEMO: Open-Source Cinema Showcase</span>
+                <small id="active-video-desc">Real-time digital cinema frame rendering & camera movement</small>
+              </div>
+              <div class="monitor-actions">
+                <button id="theater-play-btn" class="mini-btn"><i class="fa-solid fa-play"></i> Play/Pause</button>
+                <button id="theater-mute-btn" class="mini-btn"><i class="fa-solid fa-volume-high"></i> Audio</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video Masterclass Playlist -->
+          <div class="theater-playlist">
+            <h4 class="playlist-heading"><i class="fa-solid fa-film gold"></i> Curated Video Lessons</h4>
+            
+            <div class="playlist-items-list">
+              <div class="playlist-card active" data-video-src="assets/videos/cinematic_sample.webm" data-title="CINEMATIC DEMO: Camera Movement & Motion Blur" data-desc="Analyzing 180-degree rotary shutter motion blur and lens depth.">
+                <div class="playlist-thumb">
+                  <img src="assets/images/hero_camera.jpg" alt="Camera Setup">
+                  <div class="thumb-play-icon"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="playlist-info">
+                  <h5>1. Cinematic Motion & Camera Movement</h5>
+                  <span>Demo Video (Local Asset)</span>
+                  <small>02:15 • 24fps Standard</small>
+                </div>
+              </div>
+
+              <div class="playlist-card" data-youtube-id="O41r7xW_rCQ" data-title="The 180 Degree Rule Masterclass" data-desc="Why crossing the line of action disorients audiences and how to transition legally.">
+                <div class="playlist-thumb">
+                  <img src="assets/images/director_monitor.jpg" alt="180 Degree Rule">
+                  <div class="thumb-play-icon"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="playlist-info">
+                  <h5>2. The 180-Degree Rule & Eyelines</h5>
+                  <span>Essential Grammar</span>
+                  <small>Visual Tutorial Embed</small>
+                </div>
+              </div>
+
+              <div class="playlist-card" data-youtube-id="3rZ2YjMv1_M" data-title="Cinematic 3-Point Lighting Setup" data-desc="How to place Key, Fill, and Rim lights to sculpt character faces with cinematic contrast.">
+                <div class="playlist-thumb">
+                  <img src="assets/images/lighting_rig.jpg" alt="Lighting Breakdown">
+                  <div class="thumb-play-icon"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="playlist-info">
+                  <h5>3. Lighting the Subject on Set</h5>
+                  <span>Grip & Electric Masterclass</span>
+                  <small>Studio Setup Breakdown</small>
+                </div>
+              </div>
+
+              <div class="playlist-card" data-youtube-id="2X2B_R9Z8bU" data-title="Color Grading Log Footage to Rec.709" data-desc="Converting flat, desaturated Log sensor images into rich, cinematic film prints.">
+                <div class="playlist-thumb">
+                  <img src="assets/images/editing_suite.jpg" alt="Color Grading">
+                  <div class="thumb-play-icon"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="playlist-info">
+                  <h5>4. Post-Production Color Grading</h5>
+                  <span>DaVinci Resolve Workflow</span>
+                  <small>Scopes & Skin Tone Line</small>
+                </div>
+              </div>
+
+              <div class="playlist-card" data-youtube-id="GwrjL_hRfqA" data-title="Case Study: Hero Elevation & Action Geometry (Prabhas in Salaar)" data-desc="Analyzing Prashanth Neel & Bhuvan Gowda's visual choreography: 1000 FPS Phantom speed ramping, low-angle 24mm framing, and silhouette backlighting.">
+                <div class="playlist-thumb">
+                  <img src="assets/images/hero_camera.jpg" alt="Salaar Action Staging">
+                  <div class="thumb-play-icon"><i class="fa-solid fa-play"></i></div>
+                </div>
+                <div class="playlist-info">
+                  <h5>5. Hero Elevation: Prabhas in Salaar</h5>
+                  <span>Blockbuster Staging Case Study</span>
+                  <small>1000 FPS & Low-Angle Geometry</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 4: COLOR GRADING BEFORE / AFTER INTERACTIVE SLIDER
+         =================================================================== -->
+    <section id="grade-slider" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-eye-dropper gold"></i> STEP 04 IN THE PROCESS</div>
+        <h2 class="section-title">Color Science: Flat Log vs Film Grade</h2>
+        <p class="section-desc">
+          Drag the interactive comparison handle below to see how raw, flat camera Log gamma is transformed into a rich, three-dimensional cinematic image with Kodak film emulation.
+        </p>
+      </div>
+
+      <div class="color-comparison-container glass-panel">
+        <div class="comparison-viewport" id="comparison-slider-box">
+          
+          <!-- Before: Flat Log Image -->
+          <div class="comparison-layer before-layer">
+            <img src="assets/images/actor_performance.jpg" alt="Flat Log Footage" class="grade-img log-look">
+            <span class="grade-label left-label">RAW CAMERA S-LOG3 (FLAT / UNGRADED)</span>
+          </div>
+
+          <!-- After: Rich Graded Image -->
+          <div class="comparison-layer after-layer" id="after-grade-layer" style="width: 50%;">
+            <img src="assets/images/actor_performance.jpg" alt="Final Film Grade" class="grade-img rich-grade">
+            <span class="grade-label right-label">FINAL PRINT EMULATION (REC.709 / ACES)</span>
+          </div>
+
+          <!-- Draggable Handle Bar -->
+          <div class="slider-handle" id="grade-drag-handle" style="left: 50%;">
+            <div class="handle-line"></div>
+            <div class="handle-button">
+              <i class="fa-solid fa-arrows-left-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Interactive Grading Deck & Oscilloscope Scopes -->
+        <div class="color-deck-grid">
+          <div class="deck-controls-col">
+            <h4 class="deck-title"><i class="fa-solid fa-sliders gold"></i> Live Grading Controls</h4>
+            <div class="lut-pills-row" id="lut-preset-pills">
+              <button class="lut-pill active" data-lut="kodak"><i class="fa-solid fa-film"></i> Kodak 2383 Print</button>
+              <button class="lut-pill" data-lut="salaar"><i class="fa-solid fa-fire gold"></i> Salaar // Khansaar Soot & Gold</button>
+              <button class="lut-pill" data-lut="teal-orange"><i class="fa-solid fa-palette"></i> Teal & Orange</button>
+              <button class="lut-pill" data-lut="bleach"><i class="fa-solid fa-skull"></i> Bleach Bypass</button>
+              <button class="lut-pill" data-lut="cyberpunk"><i class="fa-solid fa-bolt sienna"></i> Cyberpunk Neon</button>
+              <button class="lut-pill" data-lut="bw"><i class="fa-solid fa-circle-half-stroke"></i> 1950s Mono</button>
+              <button class="lut-pill" data-lut="flat"><i class="fa-solid fa-align-justify"></i> Flat Log</button>
+            </div>
+
+            <div class="deck-sliders-list">
+              <div class="deck-slider-item">
+                <div class="slider-meta"><span>Exposure (EV)</span><strong id="val-grade-exp">0.0 EV</strong></div>
+                <input type="range" id="slider-grade-exp" min="-2" max="2" step="0.1" value="0">
+              </div>
+              <div class="deck-slider-item">
+                <div class="slider-meta"><span>Contrast</span><strong id="val-grade-contrast">1.0x</strong></div>
+                <input type="range" id="slider-grade-contrast" min="0.5" max="2.0" step="0.05" value="1.0">
+              </div>
+              <div class="deck-slider-item">
+                <div class="slider-meta"><span>White Balance / Warmth</span><strong id="val-grade-warmth">5600K</strong></div>
+                <input type="range" id="slider-grade-warmth" min="-50" max="50" step="1" value="0">
+              </div>
+              <div class="deck-slider-item">
+                <div class="slider-meta"><span>Saturation</span><strong id="val-grade-sat">100%</strong></div>
+                <input type="range" id="slider-grade-sat" min="0" max="200" step="5" value="100">
+              </div>
+            </div>
+
+            <div class="deck-actions-row">
+              <button id="reset-grade-btn" class="mini-btn"><i class="fa-solid fa-rotate-left"></i> Reset Grade</button>
+              <button id="toggle-grain-btn" class="mini-btn"><i class="fa-solid fa-cubes-stacked"></i> Toggle Film Grain</button>
+            </div>
+          </div>
+
+          <!-- Real-Time Waveform & RGB Scopes Canvas -->
+          <div class="deck-scopes-col">
+            <div class="scopes-header">
+              <span><i class="fa-solid fa-chart-line sienna"></i> REAL-TIME RGB PARADE & WAVEFORM</span>
+              <span class="spec-tag" id="scope-status-tag">ACEScc // 10-BIT</span>
+            </div>
+            <div class="scope-canvas-box">
+              <canvas id="grade-waveform-canvas" width="360" height="180"></canvas>
+              <div class="scope-ire-axis">
+                <span>100 IRE (Clipping)</span>
+                <span>75 IRE</span>
+                <span>50 IRE (Skin Tones)</span>
+                <span>25 IRE</span>
+                <span>0 IRE (Crushed Blacks)</span>
+              </div>
+            </div>
+            <p class="scope-caption">Live waveform updates dynamically as you adjust exposure, LUT curves, and contrast.</p>
+          </div>
+        </div>
+
+        <div class="grade-explanation-strip">
+          <div class="grade-expl-item">
+            <strong>Why Log Looks Washed Out:</strong>
+            <p>Logarithmic curves compress extreme highlights and shadow noise to retain 14+ stops of dynamic range on modern cinema sensors.</p>
+          </div>
+          <div class="grade-expl-item">
+            <strong>The Colorist's Mandate:</strong>
+            <p>Expand contrast, apply proper color space transforms (ACEScc), align skin tones to the 56° vector line, and create stylistic mood.</p>
+          </div>
+          <div class="grade-expl-item grade-case-study" style="grid-column: 1 / -1; border-left: 3px solid var(--accent-gold); background: rgba(212, 146, 42, 0.08); padding: 1.1rem 1.4rem; border-radius: var(--radius-sm); margin-top: 0.5rem;">
+            <strong style="color:var(--accent-gold); display:flex; align-items:center; gap:0.5rem; font-size:0.96rem;">
+              <i class="fa-solid fa-fire"></i> Case Study: Color Architecture of "SALAAR: Part 1 – Ceasefire" (Starring Prabhas • DP Bhuvan Gowda • Dir. Prashanth Neel)
+            </strong>
+            <p style="margin-top:0.4rem; color:var(--text-secondary); font-size:0.84rem; line-height:1.55;">
+              To build the ruthless, petroleum-soaked dystopian empire of <em>Khansaar</em>, director Prashanth Neel and DP Bhuvan Gowda pioneered an extreme subtractive monochrome-hybrid color model: midtone greens, blues, and cyans were aggressively pulled down by 85%, plunging the city streets, army rigs, and iron fortresses into deep charcoal, soot, and gunmetal gray. Against this brutalist dark canvas, ACEScc color transforms let warm golden embers, fiery muzzle flashes, and burning rim-light on Prabhas's towering silhouette punch through with razor-sharp dynamic contrast.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 5: DEPARTMENTS & CREW HIERARCHY
+         =================================================================== -->
+    <section id="departments" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-users-gear gold"></i> STEP 05 IN THE PROCESS</div>
+        <h2 class="section-title">Set Hierarchy & Crew Sectors</h2>
+        <p class="section-desc">
+          Organized by chain of command. Discover who runs each department, their standard equipment, how to speak their language, and common communication mistakes.
+        </p>
+      </div>
+
+      <!-- Department Filter Pills -->
+      <div class="dept-filter-bar">
+        <button class="filter-pill active" data-dept-filter="all">All 8 Sectors</button>
+        <button class="filter-pill" data-dept-filter="creative">Directing & Above-the-Line</button>
+        <button class="filter-pill" data-dept-filter="camera">Camera & Cinematography</button>
+        <button class="filter-pill" data-dept-filter="lighting">Grip & Electric (G&E)</button>
+        <button class="filter-pill" data-dept-filter="sound">Sound Department</button>
+        <button class="filter-pill" data-dept-filter="art">Art & Wardrobe</button>
+        <button class="filter-pill" data-dept-filter="post">Post-Production & Finishing</button>
+      </div>
+
+      <!-- Grid of Department Cards with Photo Thumbnails -->
+      <div class="departments-grid" id="departments-container">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 6: INTERACTIVE FILMMAKER SUITE (ORDERED WORKBENCH)
+         =================================================================== -->
+    <section id="tools" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-sliders gold"></i> STEP 06 IN THE PROCESS</div>
+        <h2 class="section-title">The Interactive Production Suite</h2>
+        <p class="section-desc">
+          Tools arranged in the exact order you need them: Structure your story beats first, calculate script eighths for schedule feasibility, build your camera shot list, and allocate your indie budget.
+        </p>
+      </div>
+
+      <!-- Interactive Production Pipeline Progress Indicator -->
+      <div class="production-suite-progress glass-panel" id="suite-progress-panel">
+        <div class="suite-progress-header">
+          <div class="suite-progress-info">
+            <span class="spec-tag"><i class="fa-solid fa-list-check gold"></i> SUITE WORKFLOW PIPELINE</span>
+            <h4>Interactive Production Milestones</h4>
+          </div>
+          <div class="suite-health-score">
+            <span>PIPELINE READINESS:</span>
+            <strong id="suite-readiness-percent" class="gold">25% READY</strong>
+          </div>
+        </div>
+        <div class="suite-milestone-nodes">
+          <div class="milestone-node active" id="node-beats" data-subtool="beatsheet">
+            <div class="node-circle"><i class="fa-solid fa-check"></i></div>
+            <div class="node-text">
+              <strong>1. Story Beats</strong>
+              <small id="node-beats-status">3 Acts Ready</small>
+            </div>
+          </div>
+          <div class="node-connector" id="conn-1-2"></div>
+          <div class="milestone-node" id="node-eighths" data-subtool="eighths">
+            <div class="node-circle"><i class="fa-solid fa-circle-dot"></i></div>
+            <div class="node-text">
+              <strong>2. Page 8ths</strong>
+              <small id="node-eighths-status">2 0/8 Pages</small>
+            </div>
+          </div>
+          <div class="node-connector" id="conn-2-3"></div>
+          <div class="milestone-node" id="node-shots" data-subtool="shotlister">
+            <div class="node-circle"><i class="fa-solid fa-circle-dot"></i></div>
+            <div class="node-text">
+              <strong>3. Shot List</strong>
+              <small id="node-shots-status">0 Shots</small>
+            </div>
+          </div>
+          <div class="node-connector" id="conn-3-4"></div>
+          <div class="milestone-node" id="node-budget" data-subtool="budget">
+            <div class="node-circle"><i class="fa-solid fa-circle-dot"></i></div>
+            <div class="node-text">
+              <strong>4. Indie Budget</strong>
+              <small id="node-budget-status">$50k Micro</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ordered Sub-tools Navigation -->
+      <div class="tools-subnav">
+        <button class="subtool-tab active" data-subtool="beatsheet">
+          <span class="subnav-num">1</span>
+          <span><i class="fa-solid fa-stopwatch"></i> Screenplay Beat Calculator</span>
+        </button>
+        <button class="subtool-tab" data-subtool="eighths">
+          <span class="subnav-num">2</span>
+          <span><i class="fa-solid fa-calculator"></i> Script 8ths Estimator</span>
+        </button>
+        <button class="subtool-tab" data-subtool="shotlister">
+          <span class="subnav-num">3</span>
+          <span><i class="fa-solid fa-list-ol"></i> Scene Shot List Builder</span>
+        </button>
+        <button class="subtool-tab" data-subtool="budget">
+          <span class="subnav-num">4</span>
+          <span><i class="fa-solid fa-coins"></i> Indie Budget Matrix</span>
+        </button>
+      </div>
+
+      <!-- SUBTOOL 1: BEAT SHEET CALCULATOR (DEVELOPMENT) -->
+      <div id="subtool-beatsheet" class="subtool-panel active">
+        <div class="beatsheet-calc-wrapper glass-panel">
+          <div class="calc-top">
+            <div>
+              <h3>Blake Snyder / Three-Act Narrative Beat Calculator</h3>
+              <p>Enter your planned script length (in pages or minutes) to calculate industry-standard narrative milestones.</p>
+            </div>
+            <div class="input-strip">
+              <label for="script-length-input">Total Pages / Minutes:</label>
+              <input type="number" id="script-length-input" value="95" min="5" max="240">
+              <button id="calc-beats-btn" class="cta-btn primary-btn"><i class="fa-solid fa-calculator"></i> Calculate Beats</button>
+            </div>
+          </div>
+
+          <div class="acts-grid" id="beats-output-grid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBTOOL 2: SCRIPT 8THS ESTIMATOR (PRE-PROD LOGISTICS) -->
+      <div id="subtool-eighths" class="subtool-panel">
+        <div class="eighths-calculator-box glass-panel">
+          <div class="tool-intro-header">
+            <div>
+              <h3>Hollywood "Eighths of a Page" Estimator</h3>
+              <p>1st ADs and Script Supervisors measure scene volume in 1/8ths of a page. A realistic indie shoot day achieves 3 to 5 pages per day.</p>
+            </div>
+            <span class="spec-tag">1 PAGE = 8 EIGHTHS</span>
+          </div>
+          
+          <div class="eighths-controls">
+            <div class="form-group">
+              <label for="scene-full-pages">Full Pages:</label>
+              <input type="number" id="scene-full-pages" value="2" min="0" max="50">
+            </div>
+            <div class="form-group">
+              <label for="scene-eighths">Additional Eighths (1-7):</label>
+              <select id="scene-eighths">
+                <option value="0">0 / 8</option>
+                <option value="1">1 / 8 (approx 15 seconds)</option>
+                <option value="2">2 / 8 (approx 30 seconds / 1/4 page)</option>
+                <option value="3" selected>3 / 8 (approx 45 seconds)</option>
+                <option value="4">4 / 8 (approx 1 minute / 1/2 page)</option>
+                <option value="5">5 / 8 (approx 1 min 15 sec)</option>
+                <option value="6">6 / 8 (approx 1 min 30 sec / 3/4 page)</option>
+                <option value="7">7 / 8 (approx 1 min 45 sec)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="scene-complexity">Scene Complexity:</label>
+              <select id="scene-complexity">
+                <option value="simple">Simple Dialogue (2 actors, static location)</option>
+                <option value="medium" selected>Moderate (3-4 actors, blocking, minor props)</option>
+                <option value="complex">High Complexity (Action, stunts, children, VFX, water/fire)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="eighths-result-card" id="eighths-result-box">
+            <!-- Dynamically calculated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBTOOL 3: SHOT LIST BUILDER (SHOOT PLANNING) -->
+      <div id="subtool-shotlister" class="subtool-panel">
+        <div class="tool-split">
+          <div class="tool-form-card glass-panel">
+            <h3 class="panel-title"><i class="fa-solid fa-plus-circle gold"></i> Add Scene Shot</h3>
+            <p class="panel-subtitle">Create structured shot coverage for your camera team.</p>
+            
+            <form id="shot-form" class="film-form">
+              <div class="form-row">
+                <div class="form-group col-4">
+                  <label for="shot-scene">Scene #</label>
+                  <input type="text" id="shot-scene" placeholder="e.g. 14A" value="1" required>
+                </div>
+                <div class="form-group col-4">
+                  <label for="shot-num">Shot #</label>
+                  <input type="text" id="shot-num" placeholder="e.g. 1" value="1" required>
+                </div>
+                <div class="form-group col-4">
+                  <label for="shot-subject">Subject</label>
+                  <input type="text" id="shot-subject" placeholder="e.g. Marcus & Elena" required>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="shot-size">Shot Size</label>
+                  <select id="shot-size">
+                    <option value="EWS">Extreme Wide Shot (EWS)</option>
+                    <option value="WS">Wide Shot (Master / WS)</option>
+                    <option value="MWS">Medium Wide Shot (Cowboy / MWS)</option>
+                    <option value="MS" selected>Medium Shot (Waist up / MS)</option>
+                    <option value="MCU">Medium Close-Up (Chest up / MCU)</option>
+                    <option value="CU">Close-Up (Face / CU)</option>
+                    <option value="ECU">Extreme Close-Up (Eyes / Detail / ECU)</option>
+                    <option value="OTS">Over-The-Shoulder (OTS)</option>
+                    <option value="POV">Point of View (POV)</option>
+                    <option value="INSERT">Cutaway / Insert</option>
+                  </select>
+                </div>
+                <div class="form-group col-6">
+                  <label for="shot-angle">Camera Angle</label>
+                  <select id="shot-angle">
+                    <option value="Eye Level" selected>Eye Level (Neutral)</option>
+                    <option value="Low Angle">Low Angle (Empowering / Heroic)</option>
+                    <option value="High Angle">High Angle (Diminished / Vulnerable)</option>
+                    <option value="Dutch Tilt">Dutch Angle / Canted (Unease / Chaos)</option>
+                    <option value="Bird's Eye">Bird's Eye (Top-Down God View)</option>
+                    <option value="Worm's Eye">Worm's Eye (Ground-Up Extreme)</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label for="shot-movement">Camera Movement</label>
+                  <select id="shot-movement">
+                    <option value="Static (Tripod)" selected>Static (Locked on Tripod)</option>
+                    <option value="Handheld">Handheld (Documentary / Visceral)</option>
+                    <option value="Pan / Tilt">Pan / Tilt</option>
+                    <option value="Dolly In / Push">Dolly In (Emotional Focus)</option>
+                    <option value="Dolly Out / Pull">Dolly Out (Isolation / Reveal)</option>
+                    <option value="Tracking">Tracking / Follow Shot</option>
+                    <option value="Steadicam / Gimbal">Steadicam / Gimbal Smooth</option>
+                    <option value="Jib / Crane">Jib / Crane Boom</option>
+                  </select>
+                </div>
+                <div class="form-group col-6">
+                  <label for="shot-lens">Focal Length</label>
+                  <select id="shot-lens">
+                    <option value="18mm (Ultra Wide)">18mm Ultra Wide</option>
+                    <option value="24mm (Wide)">24mm Wide Environmental</option>
+                    <option value="35mm (Cinematic Master)" selected>35mm Cinematic Master</option>
+                    <option value="50mm (Natural Eye)">50mm Natural Perspective</option>
+                    <option value="85mm (Portrait Close-up)">85mm Intimate Close-Up</option>
+                    <option value="135mm (Telephoto Compression)">135mm Telephoto Compression</option>
+                    <option value="70-200mm Zoom">70-200mm Tele Zoom</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="shot-desc">Action & Emotional Intent</label>
+                <textarea id="shot-desc" rows="2" placeholder="e.g. Marcus discovers the missing key on the desk. Camera pushes slowly as realization hits."></textarea>
+              </div>
+
+              <div class="form-actions">
+                <button type="submit" class="cta-btn primary-btn"><i class="fa-solid fa-plus"></i> Add Shot to List</button>
+                <button type="button" id="load-sample-shots" class="cta-btn secondary-btn"><i class="fa-solid fa-wand-magic-sparkles"></i> Load Scene Demo</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Shot Table Preview Card -->
+          <div class="tool-preview-card glass-panel">
+            <div class="preview-header">
+              <div>
+                <h3 class="panel-title">Production Shot List</h3>
+                <span id="shot-count-badge" class="badge">0 Shots Planned</span>
+              </div>
+              <div class="preview-actions">
+                <button id="export-csv-btn" class="mini-btn"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+                <button id="print-shots-btn" class="mini-btn"><i class="fa-solid fa-print"></i> Print Callout</button>
+                <button id="clear-shots-btn" class="mini-btn danger"><i class="fa-solid fa-trash-can"></i> Clear</button>
+              </div>
+            </div>
+
+            <div class="shot-table-wrapper">
+              <table class="film-table" id="shots-table">
+                <thead>
+                  <tr>
+                    <th>Sc / Sh</th>
+                    <th>Size</th>
+                    <th>Angle</th>
+                    <th>Lens</th>
+                    <th>Movement</th>
+                    <th>Action / Notes</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="shots-table-body">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBTOOL 4: BUDGET MATRIX (FINANCING & PRODUCTION) -->
+      <div id="subtool-budget" class="subtool-panel">
+        <div class="budget-tiers-container">
+          <div class="budget-header-box">
+            <h3>Indie Filmmaking Tier Breakdown & Real-World Allocation</h3>
+            <p>Select your tier to see exact percentage splits, gear recommendations, and realistic survival strategies.</p>
+            <div class="tier-buttons">
+              <button class="tier-btn active" data-tier="micro">$1,000 Micro Short</button>
+              <button class="tier-btn" data-tier="indie">$10,000 Festival Contender</button>
+              <button class="tier-btn" data-tier="ultra">$50,000 SAG Micro-Budget</button>
+              <button class="tier-btn" data-tier="feature">$250,000 Low-Budget Indie</button>
+            </div>
+          </div>
+
+          <div id="budget-tier-display" class="budget-card-content glass-panel">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 7: CINEMATIC FOLEY & ON-SET AUDIO SOUNDBOARD
+         =================================================================== -->
+    <section id="soundboard" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-headphones gold"></i> STEP 07 IN THE PROCESS</div>
+        <h2 class="section-title">The Foley Studio & On-Set Soundboard</h2>
+        <p class="section-desc">
+          Sound is 60% of the emotional cinematic experience. Test authentic on-set audio cues, mechanical shutter sounds, walkie-talkie callouts, and Hollywood trailer braaams with real-time frequency visualizer.
+        </p>
+      </div>
+
+      <div class="foley-studio-container glass-panel">
+        <div class="foley-console-header">
+          <div class="console-title">
+            <span class="rec-dot-live"></span>
+            <strong>CRAFT AUDIO CONSOLE // 32-BIT FLOAT 96kHz</strong>
+          </div>
+          <div class="console-controls">
+            <span class="vol-label"><i class="fa-solid fa-volume-high"></i> Master Out</span>
+            <input type="range" id="foley-master-vol" min="0" max="100" value="75">
+            <span class="badge" id="foley-active-sound">Ready for Playback</span>
+          </div>
+        </div>
+
+        <!-- Live Audio Waveform / Spectrum Canvas -->
+        <div class="foley-visualizer-wrap">
+          <canvas id="soundboard-spectrum-canvas" width="800" height="90"></canvas>
+          <div class="visualizer-grid-lines"></div>
+        </div>
+
+        <!-- 8 Interactive Foley Sound Pads -->
+        <div class="sound-pads-grid">
+          <button class="sound-pad" data-sound="slate">
+            <div class="pad-icon"><i class="fa-solid fa-clapperboard gold"></i></div>
+            <div class="pad-info">
+              <strong>1. Production Slate Snap</strong>
+              <small>Marker clack for sync</small>
+            </div>
+            <span class="pad-key">KEY 1</span>
+          </button>
+
+          <button class="sound-pad" data-sound="shutter">
+            <div class="pad-icon"><i class="fa-solid fa-camera sienna"></i></div>
+            <div class="pad-info">
+              <strong>2. 35mm Shutter Motor</strong>
+              <small>24fps mechanical pull-down</small>
+            </div>
+            <span class="pad-key">KEY 2</span>
+          </button>
+
+          <button class="sound-pad" data-sound="walkie">
+            <div class="pad-icon"><i class="fa-solid fa-walkie-talkie gold"></i></div>
+            <div class="pad-info">
+              <strong>3. Walkie-Talkie Chirp</strong>
+              <small>"10-4, rolling sound!"</small>
+            </div>
+            <span class="pad-key">KEY 3</span>
+          </button>
+
+          <button class="sound-pad" data-sound="projector">
+            <div class="pad-icon"><i class="fa-solid fa-film"></i></div>
+            <div class="pad-info">
+              <strong>4. Vintage Film Projector</strong>
+              <small>Whirring reel & gate flutter</small>
+            </div>
+            <span class="pad-key">KEY 4</span>
+          </button>
+
+          <button class="sound-pad" data-sound="braaam">
+            <div class="pad-icon"><i class="fa-solid fa-bullhorn sienna"></i></div>
+            <div class="pad-info">
+              <strong>5. Cinema Trailer Horn</strong>
+              <small>Epic sub-bass Inception hit</small>
+            </div>
+            <span class="pad-key">KEY 5</span>
+          </button>
+
+          <button class="sound-pad" data-sound="roomtone">
+            <div class="pad-icon"><i class="fa-solid fa-microphone-lines gold"></i></div>
+            <div class="pad-info">
+              <strong>6. Room Tone Ambience</strong>
+              <small>60Hz hum silence baseline</small>
+            </div>
+            <span class="pad-key">KEY 6</span>
+          </button>
+
+          <button class="sound-pad" data-sound="action">
+            <div class="pad-icon"><i class="fa-solid fa-person-running sienna"></i></div>
+            <div class="pad-info">
+              <strong>7. Director Megaphone</strong>
+              <small>"Quiet please... ACTION!"</small>
+            </div>
+            <span class="pad-key">KEY 7</span>
+          </button>
+
+          <button class="sound-pad" data-sound="bell">
+            <div class="pad-icon"><i class="fa-solid fa-bell gold"></i></div>
+            <div class="pad-info">
+              <strong>8. Sound Stage Bells</strong>
+              <small>Two bells: Rolling take!</small>
+            </div>
+            <span class="pad-key">KEY 8</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 8: ON-SET JARGON DECODER & VOCABULARY
+         =================================================================== -->
+    <section id="glossary" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-book-journal-whills gold"></i> STEP 08 IN THE PROCESS</div>
+        <h2 class="section-title">The On-Set Jargon Decoder</h2>
+        <p class="section-desc">
+          Never look like an amateur when the Gaffer asks for a "C-47" or the 1st AD yells "Abby Singer!". Search over 65 essential film set terms, abbreviations, and callouts.
+        </p>
+      </div>
+
+      <!-- Search and Category Filters -->
+      <div class="glossary-control-bar glass-panel">
+        <div class="search-input-wrapper">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="glossary-search" placeholder="Search by term (e.g. 'Martini', 'Stinger', 'MOS', 'Apple Box', '180 Rule')...">
+          <span id="glossary-match-count" class="spec-tag" style="margin-right:0.4rem; white-space:nowrap;">All Terms</span>
+          <button id="clear-search-btn" class="clear-icon"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="glossary-cats">
+          <button class="glossary-cat-btn active" data-category="all">All Terms</button>
+          <button class="glossary-cat-btn" data-category="set">Set Callouts & Slang</button>
+          <button class="glossary-cat-btn" data-category="camera">Camera & Lenses</button>
+          <button class="glossary-cat-btn" data-category="lighting">Grip & Lighting</button>
+          <button class="glossary-cat-btn" data-category="sound">Sound & Audio</button>
+          <button class="glossary-cat-btn" data-category="post">Post-Production</button>
+          <button class="glossary-cat-btn" data-category="legal">Business & Legal</button>
+        </div>
+      </div>
+
+      <!-- Glossary Card Grid -->
+      <div class="glossary-grid" id="glossary-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 9: PRE-FLIGHT AUDIT & LAUNCH CHECKLIST
+         =================================================================== -->
+    <section id="checklist" class="chronological-section reveal-on-scroll">
+      <div class="section-header">
+        <div class="section-tag"><i class="fa-solid fa-list-check gold"></i> STEP 09 IN THE PROCESS</div>
+        <h2 class="section-title">First-Time Filmmaker Pre-Flight Audit</h2>
+        <p class="section-desc">
+          Organized chronologically from contracts to shooting day and post deliverables. Tick off items and track your production readiness score in real-time. Automatically saved to your browser.
+        </p>
+      </div>
+
+      <!-- Progress Meter with Animated Radial SVG Circle -->
+      <div class="checklist-progress-card glass-panel">
+        <div class="radial-progress-wrapper">
+          <div class="radial-circle-box">
+            <svg class="radial-svg" width="110" height="110" viewBox="0 0 110 110">
+              <circle class="radial-track" cx="55" cy="55" r="46" stroke-width="8"></circle>
+              <circle class="radial-indicator" id="radial-progress-circle" cx="55" cy="55" r="46" stroke-width="8" stroke-dasharray="289" stroke-dashoffset="289"></circle>
+            </svg>
+            <div class="radial-center-text">
+              <span class="radial-percent" id="checklist-percentage">0%</span>
+              <small>READY</small>
+            </div>
+          </div>
+          <div class="radial-details-box">
+            <div class="progress-info-line">
+              <div>
+                <span class="progress-label">MISSION READINESS SCORE</span>
+                <h3 class="progress-status-title" id="checklist-status-title">PRE-FLIGHT AUDIT IN PROGRESS</h3>
+              </div>
+              <div class="progress-counts">
+                <span id="checklist-completed-count" class="gold">0</span> of <span id="checklist-total-count">30</span> Critical Protocols Verified
+              </div>
+              <button id="reset-checklist-btn" class="mini-btn danger"><i class="fa-solid fa-rotate-left"></i> Reset Audit</button>
+            </div>
+            <div class="progress-track">
+              <div class="progress-bar-fill" id="progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Celebratory Confetti Canvas -->
+      <canvas id="confetti-canvas" class="confetti-canvas"></canvas>
+
+      <!-- Category Filter Tabs for Checklist -->
+      <div class="checklist-nav-bar">
+        <button class="check-tab-btn active" data-check-cat="all">All Chronological Protocols</button>
+        <button class="check-tab-btn" data-check-cat="legal">1. Legal & Permits</button>
+        <button class="check-tab-btn" data-check-cat="preprod">2. Pre-Production & Scout</button>
+        <button class="check-tab-btn" data-check-cat="shootday">3. Shoot Day Kit & Safety</button>
+        <button class="check-tab-btn" data-check-cat="audio">4. Sound & Media Offload</button>
+        <button class="check-tab-btn" data-check-cat="post">5. Post & Deliverables</button>
+      </div>
+
+      <!-- The Checklist Container -->
+      <div class="checklist-items-grid" id="checklist-container">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Department Deep-Dive Modal -->
+  <div id="dept-modal" class="film-modal" aria-hidden="true">
+    <div class="modal-backdrop"></div>
+    <div class="modal-dialog glass-panel">
+      <button class="modal-close-btn" id="close-dept-modal"><i class="fa-solid fa-xmark"></i></button>
+      <div id="dept-modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="cinematic-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="brand-text">
+          <span class="brand-title">CRAFT<span class="gold-accent">//</span>CINEMA</span>
+          <span class="brand-subtitle">THE DEFINITIVE INDIE FILMMAKER’S CODEX</span>
+        </div>
+        <p class="footer-motto">
+          "Cinema is a matter of what’s in the frame and what’s out." — Martin Scorsese
+        </p>
+      </div>
+      <div class="footer-right">
+        <div class="footer-tags">
+          <span class="spec-tag">DCI 4K</span>
+          <span class="spec-tag">24 FPS</span>
+          <span class="spec-tag">ACEScc</span>
+          <span class="spec-tag">SMPTE</span>
+          <span class="spec-tag">32-BIT FLOAT</span>
+        </div>
+        <p class="footer-copy">Built for independent storytellers worldwide. Ordered for complete cinematic mastery.</p>
+      </div>
+    </div>
+  <!-- Floating Quick Dock: Always Visible Theme & Salaar Soundtrack Controls -->
+  <aside class="floating-quick-dock" aria-label="Quick controls">
+    <button id="floating-theme-btn" class="floating-dock-btn" title="Toggle Light (Daylight Print) / Dark (Darkroom) Theme">
+      <i class="fa-solid fa-sun" id="floating-theme-icon"></i>
+      <span id="floating-theme-text">THEME</span>
+    </button>
+    <button id="floating-score-btn" class="floating-dock-btn glow-amber" title="Play/Pause Salaar BGM Soundtrack">
+      <i class="fa-solid fa-fire gold"></i>
+      <span id="floating-score-text">SALAAR BGM</span>
+    </button>
+  </aside>
+
+  <!-- Toast Notification System -->
+  <div id="film-toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="gravity-city.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
